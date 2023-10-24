@@ -1,0 +1,35 @@
+-- 默认不开启nvim-tree
+--vim.g.loaded_netrw = 1
+--vim.g.loaded_netrwPlugin = 1
+--vim.opt.termguicolors = true
+
+--require("nvim-tree").setup({
+--  sort_by = "case_sensitive",
+--  hijack_cursor = true,
+--  renderer = {
+--    group_empty = true,
+--    icons = {
+--      show = {
+--        git = true,
+--        file = false,
+--        folder = false,
+--        folder_arrow = true,
+--      },
+--      glyphs = {
+--        folder = {
+--          arrow_closed = "⏵",
+--          arrow_open = "⏷",
+--        },
+--        git = {
+--          unstaged = "✗",
+--          staged = "✓",
+--          unmerged = "⌥",
+--          renamed = "➜",
+--          untracked = "★",
+--          deleted = "⊖",
+--          ignored = "◌",
+--        },
+--      },
+--    },
+--  },
+--})

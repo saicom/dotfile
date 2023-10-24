@@ -1,0 +1,164 @@
+local ensure_packer = function()
+	local fn = vim.fn
+	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+	if fn.empty(fn.glob(install_path)) > 0 then
+		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
+		vim.cmd([[packadd packer.nvim]])
+		return true
+	end
+	return false
+end
+
+local packer_bootstrap = ensure_packer()
+
+-- 保存此文件自动更新安装软件
+-- 注意PackerCompile改成了PackerSync
+-- plugins.lua改成了plugins-setup.lua，适应本地文件名字
+vim.cmd([[
+  augroup packer_user_config
+  autocmd!
+  autocmd BufWritePost plugin_setup.lua source <afile> | PackerSync
+  augroup end
+]])
+
+return require("packer").startup(function(use)
+	use("wbthomason/packer.nvim")
+	-- My plugins here
+	use("folke/tokyonight.nvim") -- theme
+	use({
+		"nvim-lualine/lualine.nvim", -- 状态栏
+		requires = { "kyazdani42/nvim-web-devicons", opt = true }, -- 状态栏图标
+	})
+	-- use({
+	-- 	"nvim-tree/nvim-tree.lua", -- 文档树
+	-- 	requires = {
+	-- 		"nvim-tree/nvim-web-devicons", -- 文档树图标
+	-- 	},
+	-- })
+
+	use("nvim-treesitter/nvim-treesitter") -- 语法高亮
+	use("p00f/nvim-ts-rainbow") -- 配合treesitter，不同括号颜色区分
+
+	use({
+		"williamboman/mason.nvim",
+		"williamboman/mason-lspconfig.nvim", -- 这个相当于mason.nvim和lspconfig的桥梁
+		"neovim/nvim-lspconfig",
+	})
+
+	use("glepnir/lspsaga.nvim")
+	use("onsails/lspkind.nvim")
+
+	-- 自动补全
+	use("hrsh7th/nvim-cmp")
+	use("hrsh7th/cmp-nvim-lsp")
+	use("hrsh7th/cmp-path") -- 文件路径
+	use("hrsh7th/cmp-buffer")
+	use("hrsh7th/cmp-cmdline")
+	use("hrsh7th/cmp-calc")
+	use("hrsh7th/cmp-nvim-lua")
+	use("octaltree/cmp-look") -- 用于完成英语单词
+	use("f3fora/cmp-spell")
+
+	use("L3MON4D3/LuaSnip") -- snippets引擎，不装这个自动补全会出问题
+	use("saadparwaiz1/cmp_luasnip")
+	use("rafamadriz/friendly-snippets")
+
+	use("numToStr/Comment.nvim") -- gcc和gc注释
+	use("windwp/nvim-autopairs") -- 自动补全括号
+
+	use("akinsho/bufferline.nvim") -- buffer分割线
+	use("lewis6991/gitsigns.nvim") -- 左则git提示
+
+	use({
+		"nvim-telescope/telescope.nvim",
+		-- tag = "0.1.1", -- 文件检索
+		requires = { { "nvim-lua/plenary.nvim" } },
+	})
+	use("nvim-telescope/telescope-project.nvim")
+	use("nvim-telescope/telescope-hop.nvim")
+
+	use({
+		"stevearc/conform.nvim",
+		config = function()
+			require("conform").setup()
+		end,
+	})
+
+	use("mhartington/formatter.nvim")
+
+	use({
+		"kylechui/nvim-surround",
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end,
+	})
+
+	--golang
+	use("ray-x/go.nvim")
+	use("ray-x/guihua.lua") -- recommended if need floating window support
+
+	use({
+		"preservim/nerdtree",
+		setup = function()
+			-- Read the following nerdtree section and add what you need
+		end,
+	})
+	use("tiagofumo/vim-nerdtree-syntax-highlight")
+	use("ryanoasis/vim-devicons")
+
+	use({
+		"folke/flash.nvim",
+	})
+
+	use("kyazdani42/nvim-web-devicons")
+
+	use({
+		"akinsho/toggleterm.nvim",
+		config = function()
+			require("toggleterm").setup({
+				-- open_mapping = '<C-\\>',
+				-- start_in_insert = true,
+				-- direction = 'float',
+			})
+		end,
+	})
+
+	use({ "folke/which-key.nvim" })
+
+	use({ "folke/trouble.nvim" })
+
+	use({ "lukas-reineke/indent-blankline.nvim", tag = "v2.20.8" })
+
+	use("ggandor/leap.nvim")
+	-- use {"neoclide/coc.nvim", branch = 'release'}
+	use("ray-x/lsp_signature.nvim")
+
+	use("suan/vim-instant-markdown")
+
+	use("glepnir/dashboard-nvim")
+
+	use("rcarriga/nvim-notify")
+
+	use("echasnovski/mini.indentscope")
+
+	-- debugging
+	use("mfussenegger/nvim-dap")
+	use("leoluz/nvim-dap-go")
+	use("rcarriga/nvim-dap-ui")
+	use("theHamsta/nvim-dap-virtual-text")
+	use("nvim-telescope/telescope-dap.nvim")
+	use("rcarriga/cmp-dap")
+
+	use("terryma/vim-expand-region")
+	-- use("terryma/vim-multiple-cursors")
+	-- use("mg979/vim-visual-multi")
+	use("terryma/vim-smooth-scroll")
+
+	-- Automatically set up your configuration after cloning packer.nvim
+	-- Put this at the end after all plugins
+	if packer_bootstrap then
+		require("packer").sync()
+	end
+end)
