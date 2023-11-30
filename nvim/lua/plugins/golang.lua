@@ -6,20 +6,20 @@ function format_go()
 	require("go.format").goimport()
 end
 
-local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
-vim.api.nvim_create_autocmd("BufWritePre", {
-	pattern = "*.go",
-	callback = function()
-		-- require("go.format").goimport()
-		-- 运行 goimports 命令
-		vim.cmd([[GoImport]])
-
-		vim.defer_fn(function()
-			vim.cmd("noautocmd w")
-		end, 300)
-	end,
-	group = format_sync_grp,
-})
+-- local format_sync_grp = vim.api.nvim_create_augroup("GoImport", {})
+-- vim.api.nvim_create_autocmd("BufWritePre", {
+--     pattern = "*.go",
+--     callback = function()
+--         require("go.format").goimport()
+--         -- vim.cmd([[GoImport]])
+--         -- 运行 goimports 命令
+--
+--         vim.defer_fn(function()
+--             vim.cmd("noautocmd w")
+--         end, 300)
+--     end,
+--     group = format_sync_grp,
+-- })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*.json",
@@ -119,6 +119,7 @@ function showStructOptions()
 	vim.api.nvim_buf_set_option(bufnr, "bufhidden", "wipe")
 	vim.api.nvim_buf_set_option(bufnr, "buftype", "nofile")
 	vim.api.nvim_buf_set_option(bufnr, "filetype", "gostructpopup")
+
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-o>", "<Nop>", { silent = true })
 	vim.api.nvim_buf_set_keymap(bufnr, "n", "<C-i>", "<Nop>", { silent = true })
 
@@ -151,6 +152,8 @@ function showStructOptions()
 
 	vim.api.nvim_win_set_option(windows_nr, "number", false)
 	vim.api.nvim_win_set_option(windows_nr, "relativenumber", false)
+	vim.api.nvim_buf_set_option(bufnr, "readonly", true)
+	vim.api.nvim_buf_set_option(bufnr, "modifiable", false)
 
 	close_unfocus = vim.api.nvim_create_autocmd({ "WinLeave" }, {
 		callback = function()

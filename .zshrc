@@ -109,16 +109,18 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 #
-alias ll='ls -al'
+alias open='dolphin'
+alias procs='procs -i TCP'
+alias ll='lsd -al'
 alias nvid='neovide'
 alias vim='nvim'
 alias z='zoxide'
 
 #alias vi='nvim'
-alias -s go=vi
-alias -s cpp=vi
-alias -s c=vi
-alias -s py=vi
+alias -s go=vim
+alias -s cpp=vim
+alias -s c=vim
+alias -s py=vim
 alias -s gz='tar -xzvf'
 alias -s zip='unzip'
 alias -s bz2='tar -xjvf'
@@ -129,8 +131,7 @@ alias gpl='git pull'
 alias gps='git push'
 alias gs='git status'
 
-alias cdg='cd /d/Work/git'
-alias cdr='cd /c/Users/sai/AppData/Local/nvim'
+alias cdg='cd ~/Documents/git'
 
 alias s213='ssh -p 1022 root@vva.zhaolugame.com'
 alias s199='ssh zhaolu@192.168.0.199'
@@ -155,3 +156,16 @@ fi
 
 # GITSTATUS_LOG_LEVEL=DEBUG
 
+alias setproxy="export ALL_PROXY=socks5://127.0.0.1:7890; echo 'SET PROXY SUCCESS!!!'"
+alias unsetproxy="unset ALL_PROXY; echo 'UNSET PROXY SUCCESS!!!'"
+
+
+# autojump
+source /usr/share/autojump/autojump.bash
+
+export SHELL=/bin/zsh
+
+export GOROOT=/usr/lib/go
+export GOPATH=/home/saicom/go
+
+export PATH=$GOPATH/bin:$GOROOT/bin:$PATH

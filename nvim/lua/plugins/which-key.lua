@@ -16,6 +16,7 @@ local mappings = {
 	v = { "<C-w>v", "Vertical Split" },
 	h = { "<C-w>s", "Horizontal Split" },
 	s = { ":cd %:p:h<cr>", "Change To Current Directory" },
+	a = { "<cmd>ASToggle<cr>", "Toggle AutoSave" },
 	t = {
 		name = "ToggleTerm",
 		f = { "<cmd>ToggleTerm direction=float<cr>", "New Terminal" },
@@ -49,6 +50,8 @@ local mappings = {
 		o = { "<cmd>Telescope oldfiles<cr>", "Old Files" },
 		c = { "<cmd>Telescope command_history<cr>", "Command History" },
 		m = { "<cmd>Telescope telemake<cr>", "Makefile" },
+		z = { "<cmd>lua require'telescope'.extensions.zoxide.list()<cr>", "Zoxide list" },
+		S = { "<cmd>lua require'telescope'.extensions.luasnip.luasnip{}<cr>", "Snips" },
 	},
 	g = {
 		name = "Git",

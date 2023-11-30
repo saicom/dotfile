@@ -7,7 +7,7 @@ opt.number = true
 -- 缩进
 opt.tabstop = 4
 opt.shiftwidth = 4
-opt.expandtab = true
+opt.expandtab = false
 opt.autoindent = true
 opt.smarttab = true
 
@@ -63,10 +63,11 @@ vim.cmd([[highlight Visual cterm=bold gui=bold guifg=#1b1d2b guibg=#c3e88d]])
 -- vim.cmd('autocmd VimEnter * NvimTreeOpen')
 -- vim.cmd('autocmd VimEnter * NERDTree')
 vim.cmd('autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif')
--- vim.cmd [[let $shell = '/usr/bin/zsh']]
+-- vim.cmd [[let $shell = 'zsh']]
+opt.shell = "/bin/zsh"
 -- vim.cmd([[let &shellcmdflag = '-s']])
 
-vim.cmd([[autocmd InsertLeave * :wa ]])
+-- vim.cmd([[autocmd InsertLeave * :wa ]])
 vim.cmd([[autocmd FocusGained,BufEnter * :checktime]])
 
 vim.notify = require("notify")
@@ -103,4 +104,16 @@ augroup END
 -- window平台
 if vim.fn.has("win32") == 1 then
 	vim.o.shellcmdflag = "-s"
+end
+
+if vim.g.neovide then
+	vim.opt.shell = "/bin/zsh"
+	-- Helper function for transparency formatting
+	local alpha = function()
+		return string.format("%x", math.floor(255 * vim.g.transparency or 0.8))
+	end
+	-- g:neovide_transparency should be 0 if you want to unify transparency of content and title bar.
+	vim.g.neovide_transparency = 0.9
+	vim.g.transparency = 0.9
+	vim.g.neovide_background_color = "#0f1117" .. alpha()
 end

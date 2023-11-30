@@ -1,5 +1,5 @@
 #install dependencies
-sudo apt install -y git zsh gcc g++ make cmake ripgrep golang python3-venv nodejs npm autojump
+sudo pacman -Sy git zsh gcc g++ make cmake ripgrep go python3-venv nodejs npm autojump
 go env -w GOPROXY=https://goproxy.cn,direct
 go env -w GO111MODULE=on
 go install github.com/jesseduffield/lazygit@latest
