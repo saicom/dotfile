@@ -11,12 +11,11 @@ require("mason").setup({
 require("mason-lspconfig").setup({
 	-- 确保安装，根据需要填写
 	ensure_installed = {
-		"lua_ls",
+		-- "lua_ls",
 		"gopls",
 		"bufls",
 		"volar",
 		"jsonls",
-		"clangd",
 		"cmake",
 	},
 })
@@ -26,10 +25,6 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities(vim.lsp.protoc
 local lspconfig = require("lspconfig")
 
 local util = require("lspconfig/util")
-
-lspconfig.lua_ls.setup({
-	capabilities = capabilities,
-})
 
 local on_attach = function(client, bufnr)
 	require("lsp_signature").on_attach({
@@ -42,6 +37,13 @@ local on_attach = function(client, bufnr)
 		shadow_guibg = "Yellow",
 	}, bufnr)
 end
+
+lspconfig.lua_ls.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	root_dir = util.root_pattern(".git"),
+	filetypes = { "lua" },
+})
 
 lspconfig.volar.setup({
 	on_attach = on_attach,
@@ -74,26 +76,27 @@ lspconfig.bufls.setup({
 	},
 })
 
-lspconfig.clangd.setup({
-	on_attach = on_attach,
-	capabilities = capabilities,
-	cmd = {
-		"clangd",
-		"--background-index",
-		"--log=verbose",
-		"--query-driver=d:/MingW/*",
-		"--pretty",
-		"--background-index",
-	},
-	filetypes = { "c", "cpp", "cxx", "cc" },
-	root_dir = util.root_pattern(".git"),
-	settings = {
-		["clangd"] = {
-			["compilationDatabasePath"] = "build",
-			["fallbackFlags"] = { "-std=c++17" },
-		},
-	},
-})
+-- lspconfig.clangd.setup({
+-- 	on_attach = on_attach,
+-- 	capabilities = capabilities,
+-- 	cmd = {
+-- 		"clangd",
+-- 		"--background-index",
+-- 		"--log=verbose",
+-- 		"--pretty",
+-- 		"--background-index",
+-- 	},
+-- 	filetypes = { "c", "cpp", "cxx", "cc" },
+-- 	root_dir = util.root_pattern(".git"),
+-- 	settings = {
+-- 		["clangd"] = {
+-- 			["compilationDatabasePath"] = "build",
+-- 			["fallbackFlags"] = { "-std=c++17" },
+-- 		},
+-- 	},
+-- })
+
+require("ccls").setup({ lsp = { use_defaults = true } })
 
 lspconfig.gopls.setup({
 	on_attach = on_attach,

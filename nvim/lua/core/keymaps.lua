@@ -14,19 +14,11 @@ keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 keymap.set("n", "<leader>n", ":nohl<CR>", { silent = true, noremap = true })
 
 -- 插件
--- keymap.set("n", "<F3>", ":NvimTreeToggle<CR>")
--- keymap.set("n", "<leader>f", ":NvimTreeFindFile<CR>")
+keymap.set("n", "<F3>", ":NvimTreeToggle<CR>")
+keymap.set("n", "ff", ":NvimTreeFocus<CR>")
 
-function ToggleNerdtree()
-	vim.cmd(":NERDTreeToggle<cr>")
-	if vim.g.loaded_webdevicons then
-		-- 如果存在，调用 webdevicons#refresh() 函数
-		vim.fn["webdevicons#refresh"]()
-	end
-end
-
-keymap.set("n", "<F3>", ":NERDTreeToggle<CR>", { silent = true, noremap = true })
-keymap.set("n", "ff", ":NERDTreeFind<CR>", { silent = true, noremap = true })
+-- keymap.set("n", "<F3>", ":NERDTreeToggle<CR>", { silent = true, noremap = true })
+-- keymap.set("n", "ff", ":NERDTreeFind<CR>", { silent = true, noremap = true })
 
 -- 切换buffer
 keymap.set("n", "<C-L>", ":bnext<CR>")
@@ -70,3 +62,9 @@ end
 -- 设置键映射
 keymap.set("n", "<C-b>", ":lua SmoothScrollUp()<CR>", { noremap = true, silent = false })
 keymap.set("n", "<C-f>", ":lua SmoothScrollDownf()<CR>", { noremap = true, silent = false })
+
+-- function copy()
+--     require('osc52').copy_register('+')
+-- end
+--
+-- vim.api.nvim_create_autocmd('TextYankPost', { callback = copy })

@@ -5,8 +5,9 @@ require("conform").setup({
 		python = { "isort", "black" },
 		-- Use a sub-list to run only the first available formatter
 		-- javascript = { { "prettierd", "prettier" } },
-		-- go = { "gofmt", "goimports" },
+		go = { "goimports", "gofumpt", "golines" },
 		yaml = { "yamlfmt" },
+		yml = { "yamlfmt" },
 		vue = { "prettierd", "prettier" },
 		json = { "deno_fmt" },
 
@@ -21,7 +22,7 @@ require("conform").setup({
 vim.api.nvim_create_autocmd("BufWritePre", {
 	pattern = "*",
 	callback = function(args)
-		local excluded_extensions = { ".golang" }
+		local excluded_extensions = { "" }
 		local file_extension = vim.fn.expand("%:e")
 
 		for _, ext in ipairs(excluded_extensions) do
