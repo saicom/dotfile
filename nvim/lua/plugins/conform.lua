@@ -5,13 +5,14 @@ require("conform").setup({
 		python = { "isort", "black" },
 		-- Use a sub-list to run only the first available formatter
 		-- javascript = { { "prettierd", "prettier" } },
-		go = { "goimports", "gofumpt", "golines" },
+		go = { "goimports", "gofumpt" },
 		yaml = { "yamlfmt" },
 		yml = { "yamlfmt" },
 		vue = { "prettierd", "prettier" },
 		json = { "deno_fmt" },
 
 		cpp = { "clang_format" },
+		cs = { "clang_format" },
 		-- ["_"] = { "trim_whitespace" },
 	},
 	format_after_save = {

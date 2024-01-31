@@ -11,7 +11,7 @@ db.setup({
 			enable = true,
 		},
 		project = {
-			enable = true,
+			enable = false,
 		},
 		shortcut = {
 			{

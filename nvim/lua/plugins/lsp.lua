@@ -52,6 +52,13 @@ lspconfig.volar.setup({
 	filetypes = { "vue", "yaml", "css", "markdown" },
 })
 
+lspconfig.omnisharp.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+	root_dir = util.root_pattern(".git"),
+	filetypes = { "cs" },
+})
+
 lspconfig.jsonls.setup({
 	capabilities = capabilities,
 	filetypes = { "json" },
