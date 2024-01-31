@@ -5,7 +5,7 @@ require("conform").setup({
 		python = { "isort", "black" },
 		-- Use a sub-list to run only the first available formatter
 		-- javascript = { { "prettierd", "prettier" } },
-		go = { "goimports", "gofumpt" },
+		go = { "goimports", "gofumpt", "golines" },
 		yaml = { "yamlfmt" },
 		yml = { "yamlfmt" },
 		vue = { "prettierd", "prettier" },
