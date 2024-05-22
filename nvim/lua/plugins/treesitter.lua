@@ -14,11 +14,13 @@ require("nvim-treesitter.configs").setup({
 		"css",
 		"rust",
 		"yaml",
+		"gdscript",
+		"godot_resource",
 	}, -- one of "all" or a list of languages
 	ignore_install = { "javascript" },
 
 	highlight = { enable = true, disable = { "javascript" } },
-	indent = { enable = true },
+	indent = { enable = false },
 
 	-- 不同括号颜色区分
 	rainbow = {

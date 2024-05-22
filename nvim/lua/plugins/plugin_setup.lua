@@ -226,6 +226,8 @@ local plugins = {
 	-- 	end,
 	-- },
 
+	{ "habamax/vim-godot" },
+
 	"elkowar/yuck.vim",
 	"h-hg/fcitx.nvim",
 

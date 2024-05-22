@@ -1,0 +1,32 @@
+{
+	"Req/Ack Message": {
+		"prefix": "rpc",
+		"body": [
+			"//$1",
+			"message ${2:Message}Req  //proj:${3:server};system:${4:game}",
+			"{\n\t$0\t\n}\n",
+			"//$1",
+			"message ${2:Message}Ack",
+			"{\n}"
+		],
+		"description": "Req and Ack message block"
+	},
+	"Message Data": {
+		"prefix": "msg",
+		"body": [
+			"//$1",
+			"message ${2:Message}Data",
+			"{\n\t$0\t\n}\n"
+		],
+		"description": "Message data block"
+	},
+	"Notify Message": {
+		"prefix": "ntf",
+		"body": [
+			"//$1",
+			"message ${2:Message}Ntf",
+			"{\n\t$0\t\n}\n"
+		],
+		"description": "Notify message block"
+	}
+}
