@@ -13,6 +13,7 @@ require("conform").setup({
 
 		cpp = { "clang_format" },
 		cs = { "clang_format" },
+		gdscript = { "gdtoolkit" },
 		-- ["_"] = { "trim_whitespace" },
 	},
 	format_after_save = {

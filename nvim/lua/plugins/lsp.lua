@@ -48,7 +48,7 @@ lspconfig.lua_ls.setup({
 lspconfig.volar.setup({
 	on_attach = on_attach,
 	capabilities = capabilities,
-	root_dir = util.root_pattern(".git"),
+	--root_dir = util.root_pattern(".git"),
 	filetypes = { "vue", "yaml", "css", "markdown" },
 })
 
@@ -69,6 +69,11 @@ lspconfig.cmake.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 	single_file_support = true,
+})
+
+lspconfig.pylsp.setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
 })
 
 lspconfig.bufls.setup({

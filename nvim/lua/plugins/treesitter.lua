@@ -20,7 +20,7 @@ require("nvim-treesitter.configs").setup({
 	ignore_install = { "javascript" },
 
 	highlight = { enable = true, disable = { "javascript" } },
-	indent = { enable = false },
+	indent = { enable = true, disable = { "gdscript" } },
 
 	-- 不同括号颜色区分
 	rainbow = {
